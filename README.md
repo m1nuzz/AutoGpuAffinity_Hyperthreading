@@ -1,6 +1,6 @@
 # AutoGpuAffinity_Hyperthreading
 
-This fork of AutoGpuAffinity is designed to test CPU cores in hyperthreading pairs. The benchmarking process will run across pairs of logical processors: 0-1, 2-3, and so on. 
+This fork of [AutoGpuAffinity](https://github.com/valleyofdoom/AutoGpuAffinity) is designed to test CPU cores in hyperthreading pairs. The benchmarking process will run across pairs of logical processors: 0-1, 2-3, and so on. 
 
 ## Features
 - Assigns GPU driver affinity to specific CPU pairs.
