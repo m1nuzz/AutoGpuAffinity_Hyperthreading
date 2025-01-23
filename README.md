@@ -25,3 +25,11 @@ Run the program using:
 
 ```bash
 python main.py
+```
+Single-Thread (original program):
+![image](https://github.com/user-attachments/assets/cd9ce14c-0594-459d-b69e-df3207c48091)
+
+
+Hyperthreading(This fork):
+![image](https://github.com/user-attachments/assets/01c7a3ca-3bf9-4d7c-ae0a-823266701c69)
+
