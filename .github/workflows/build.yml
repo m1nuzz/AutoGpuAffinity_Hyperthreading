@@ -31,13 +31,13 @@ jobs:
       - name: Create 7z Archive
         shell: cmd
         run: |
-          "C:\Program Files\7-Zip\7z.exe" a myapp.7z dist\main.exe config.ini bin
+          "C:\Program Files\7-Zip\7z.exe" a AutoGpuAffinity_Windows.7z dist\main.exe config.ini bin
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4.6.1
         with:
-          name: myapp-archive
-          path: myapp.7z
+          name: autogpuaffinity-archive
+          path: AutoGpuAffinity_Windows.7z
 
   release:
     needs: build
@@ -46,10 +46,11 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4.1.9
         with:
-          name: myapp-archive
+          name: autogpuaffinity-archive
 
       - name: Create GitHub Release
         id: create_release
+        continue-on-error: true
         uses: ncipollo/release-action@v1.16.0
         with:
           tag: ${{ github.ref }}
@@ -57,4 +58,4 @@ jobs:
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v2.2.1
         with:
-          files: myapp.7z
+          files: AutoGpuAffinity_Windows.7z
