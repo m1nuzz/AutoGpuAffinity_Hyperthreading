@@ -28,10 +28,21 @@ jobs:
       - name: Build exe with PyInstaller
         run: pyinstaller --onefile main.py
 
+      - name: Prepare files for 7z Archive
+        shell: cmd
+        run: |
+          mkdir temp
+          copy /Y dist\main.exe temp\main.exe
+          copy /Y config.ini temp\config.ini
+          xcopy /E /I /Y bin temp\bin
+
       - name: Create 7z Archive
         shell: cmd
         run: |
-          "C:\Program Files\7-Zip\7z.exe" a AutoGpuAffinity_Windows.7z dist\main.exe config.ini bin
+          cd temp
+          "C:\Program Files\7-Zip\7z.exe" a ..\AutoGpuAffinity_Windows.7z *
+          cd ..
+          rmdir /S /Q temp
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4.6.1
