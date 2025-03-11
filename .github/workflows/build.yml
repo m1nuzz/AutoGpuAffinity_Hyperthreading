@@ -26,13 +26,13 @@ jobs:
         run: pip install pyinstaller
 
       - name: Build exe with PyInstaller
-        run: pyinstaller --onefile main.py
+        run: pyinstaller --onefile --name AutoGpuAffinity main.py
 
       - name: Prepare files for 7z Archive
         shell: cmd
         run: |
           mkdir temp
-          copy /Y dist\main.exe temp\main.exe
+          copy /Y dist\AutoGpuAffinity.exe temp\AutoGpuAffinity.exe
           copy /Y config.ini temp\config.ini
           xcopy /E /I /Y bin temp\bin
 
