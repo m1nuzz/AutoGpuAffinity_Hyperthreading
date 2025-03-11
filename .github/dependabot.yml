@@ -1,0 +1,6 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"              # директория, где находится ваш workflow (обычно корень репозитория)
+    schedule:
+      interval: "daily"         # интервал проверки обновлений (можно задать "daily", "weekly" или "monthly")
