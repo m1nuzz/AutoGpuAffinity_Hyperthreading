@@ -17,7 +17,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5.4.0
         with:
-          python-version: '3.10.9'  # Укажите нужную версию Python
+          python-version: '3.10.9'
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -31,18 +31,15 @@ jobs:
       - name: Prepare files for 7z Archive
         shell: cmd
         run: |
-          mkdir temp
-          copy /Y dist\AutoGpuAffinity.exe temp\AutoGpuAffinity.exe
-          copy /Y config.ini temp\config.ini
-          xcopy /E /I /Y bin temp\bin
+          mkdir AutoGpuAffinity
+          copy /Y dist\AutoGpuAffinity.exe AutoGpuAffinity\AutoGpuAffinity.exe
+          copy /Y config.ini AutoGpuAffinity\config.ini
+          xcopy /E /I /Y bin AutoGpuAffinity\bin
 
       - name: Create 7z Archive
         shell: cmd
         run: |
-          cd temp
-          "C:\Program Files\7-Zip\7z.exe" a ..\AutoGpuAffinity_Windows.7z *
-          cd ..
-          rmdir /S /Q temp
+          "C:\Program Files\7-Zip\7z.exe" a AutoGpuAffinity_Windows.7z AutoGpuAffinity\*
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4.6.1
